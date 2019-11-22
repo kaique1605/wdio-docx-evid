@@ -1,0 +1,86 @@
+{
+  "_phantomChildren": {
+    "graceful-fs": "4.2.3",
+    "universalify": "0.1.2"
+  },
+  "author": {
+    "name": "Kaique Vandersar Ribeiro Lopes",
+    "email": "kaiqueribeiro.01@hotmail.com"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
+    ]
+  },
+  "dependencies": {
+    "@log4js-node/log4js-api": "^1.0.2",
+    "@wdio/reporter": "^5.11.0",
+    "docx-templates": "^3.1.1",
+    "fs-extra": "^8.1.0",
+    "handlebars": "^4.0.11",
+    "jpeg-js": "^0.3.3",
+    "lodash": "^ 4.17.11",
+    "mocha": "^6.2.0",
+    "moment": "^2.20.1",
+    "moment-duration-format": "^2.2.1",
+    "open": "^6.0.0",
+    "path": "^0.12.7",
+    "pngjs": "^3.3.3"
+  },
+  "deprecated": false,
+  "description": "A WebdriverIO plugin. Create a basic report",
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.2.0",
+    "@babel/plugin-proposal-export-default-from": "^7.2.0",
+    "@babel/plugin-proposal-function-bind": "^7.2.0",
+    "@babel/plugin-proposal-optional-catch-binding": "^7.2.0",
+    "@babel/plugin-syntax-export-default-from": "^7.2.0",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/register": "^7.5.5",
+    "babel-plugin-source-map-support": "^2.1.1",
+    "chai": "^4.2.0",
+    "log4js": "^5.1.0",
+    "mocha": "^6.2.0",
+    "rimraf": "^2.6.3"
+  },
+  "directories": {
+    "src": "./src"
+  },
+  "homepage": "https://github.com/kaique1605/wdio-docx-evid#readme",
+  "keywords": [
+    "wdio",
+    "docx",
+    "reporter",
+    "webdriverio",
+    "wdio-plugin",
+    "wdio-reporter",
+    "wdio-docx-evid",
+    "wdio-docx-reporter",
+    "wdio-docx-format-reporter"
+  ],
+  "license": "MIT",
+  "main": "build/index.js",
+  "name": "wdio-docx-evid",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:kaique1605/wdio-docx-evid.git"
+  },
+  "scripts": {
+    "build": "babel src/* -d build/ ",
+    "build:test": "babel test/* -d build-test",
+    "clean:build": "rimraf ./build",
+    "clean:reports": "rimraf ./reports",
+    "test": "mocha build-test/**/*.js --require @babel/register"
+  },
+  "version": "1.0.0"
+}
