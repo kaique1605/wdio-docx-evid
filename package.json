@@ -24,9 +24,7 @@
     "@wdio/reporter": "^5.11.0",
     "docx-templates": "^3.1.1",
     "fs-extra": "^8.1.0",
-    "handlebars": "^4.0.11",
     "jpeg-js": "^0.3.3",
-    "lodash": "^ 4.17.11",
     "mocha": "^6.2.0",
     "moment": "^2.20.1",
     "moment-duration-format": "^2.2.1",
@@ -48,10 +46,7 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/register": "^7.5.5",
     "babel-plugin-source-map-support": "^2.1.1",
-    "chai": "^4.2.0",
-    "log4js": "^5.1.0",
-    "mocha": "^6.2.0",
-    "rimraf": "^2.6.3"
+    "log4js": "^5.1.0"
   },
   "directories": {
     "src": "./src"
