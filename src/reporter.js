@@ -8,16 +8,12 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 require("source-map-support/register");
+const fs = require('fs-extra');
+const path = require('path');
+const logger = require('log4js');
+const createReport = require('docx-templates').default;
 
 var _reporter = _interopRequireDefault(require("@wdio/reporter"));
-
-const fs = require('fs-extra');
-
-const path = require('path');
-
-const logger = require('log4js');
-
-const createReport = require('docx-templates').default;
 
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {
@@ -33,7 +29,8 @@ class DocxEvid extends _reporter.default {
   constructor(opts) {
     opts = Object.assign({}, {
       stdout: true,
-      outputDir: '/output',
+      outputDir: './output',
+	  template: './template.docx',
       LOG: null
     }, opts);
     super(opts);
@@ -64,7 +61,6 @@ class DocxEvid extends _reporter.default {
 
   onRunnerStart(runner) {
     this.log("onRunnerStart: ", JSON.stringify(runner)); //todo look at fix, not async safe. but one cid per report file
-
     this.specName = path.basename(runner.specs[0]).split('.')[0];
   }
 
@@ -96,9 +92,10 @@ class DocxEvid extends _reporter.default {
     this.log("onTestEnd: ", JSON.stringify(theTest));
     this.log('IMAGES TEST: ', JSON.stringify(this.imagesTest));
     let filepath = path.join(this.options.outputDir, this.options.timestamp, this.specName, formatName(this.ctNum + '_' + this.ctName));
-    let template = new Buffer.from(fs.readFileSync('./template.docx').buffer);
+    let template = new Buffer.from(fs.readFileSync(this.options.template).buffer);
     let time = msToTime(theTest._duration);
-    buildReport(filepath, this.ctName, template, this.ctName, time, theTest.state, this.imagesTest);
+	if(this.imagesTest.length > 0)
+		buildReport(filepath, this.ctName, template, this.ctName, time, theTest.state, this.imagesTest);
   }
 
   isScreenshotCommand(command) {
