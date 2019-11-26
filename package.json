@@ -77,5 +77,5 @@
     "clean:reports": "rimraf ./reports",
     "test": "mocha build-test/**/*.js --require @babel/register"
   },
-  "version": "1.0.2"
+  "version": "1.0.3"
 }
