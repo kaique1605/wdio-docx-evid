@@ -21,8 +21,8 @@ function _interopRequireDefault(obj) {
   };
 }
 
-function formatName(name){
-	return name.replace(/(\s+)/g,'_').replace(/([\_\:]+)([\_\:]+)/g,'-').replace(/[\\/|<>*:"?]+/g, '');
+function formatName(name) {
+  return name.replace(/(\s+)/g, '_').replace(/([\_\:]+)([\_\:]+)/g, '-').replace(/[\\/|<>*:"?]+/g, '');
 }
 
 class DocxEvid extends _reporter.default {
@@ -30,7 +30,8 @@ class DocxEvid extends _reporter.default {
     opts = Object.assign({}, {
       stdout: true,
       outputDir: './output',
-	  template: './template.docx',
+      template: './template.docx',
+      statusInName: true,
       LOG: null
     }, opts);
     super(opts);
@@ -64,7 +65,7 @@ class DocxEvid extends _reporter.default {
     this.specName = path.basename(runner.specs[0]).split('.')[0];
   }
 
-  onSuiteStart(suite) {}
+  onSuiteStart(suite) { }
 
   onTestStart(theTest) {
     this.log("onTestStart: ", JSON.stringify(theTest));
@@ -86,7 +87,7 @@ class DocxEvid extends _reporter.default {
     this.log("onTestFail: ", JSON.stringify(test));
   }
 
-  onHookEnd(hook) {}
+  onHookEnd(hook) { }
 
   onTestEnd(theTest) {
     this.log("onTestEnd: ", JSON.stringify(theTest));
@@ -94,8 +95,8 @@ class DocxEvid extends _reporter.default {
     let filepath = path.join(this.options.outputDir, this.options.timestamp, this.specName, formatName(this.ctNum + '_' + this.ctName));
     let template = new Buffer.from(fs.readFileSync(this.options.template).buffer);
     let time = msToTime(theTest._duration);
-	if(this.imagesTest.length > 0)
-		buildReport(filepath, this.ctName, template, this.ctName, time, theTest.state, this.imagesTest);
+    if (this.imagesTest.length > 0)
+      buildReport(filepath, (this.options.statusInName ? '[' + theTest.state + ']' : '') + this.ctName, template, this.ctName, time, theTest.state, this.imagesTest);
   }
 
   isScreenshotCommand(command) {
@@ -166,7 +167,7 @@ function msToTime(s) {
 async function buildReport(evidencePath, nameDoc, template, ctName, timeDuration, state, images) {
   console.info('-- GENERATING DOC ');
   let rep = createReport({
-    output: path.join(evidencePath , formatName(nameDoc + '.docx')),
+    output: path.join(evidencePath, formatName(nameDoc + '.docx')),
     template: template,
     data: {
       project: {
