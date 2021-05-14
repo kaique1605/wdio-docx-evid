@@ -26,7 +26,7 @@
     "@wdio/reporter": "^5.11.0",
     "docx-templates": "^3.1.1",
     "fs-extra": "^8.1.0",
-    "jpeg-js": "^0.3.3",
+    "jpeg-js": "^0.4.0",
     "mocha": "^6.2.0",
     "moment": "^2.20.1",
     "moment-duration-format": "^2.2.1",
